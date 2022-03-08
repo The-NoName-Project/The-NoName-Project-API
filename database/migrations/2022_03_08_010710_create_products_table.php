@@ -14,7 +14,17 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->text('photo');
+            $table->bigInteger('precio_sale');
+            $table->bigInteger('existencias');
+            $table->bigInteger('stock');
+            $table->enum('status', ['Activo', 'Inactivo']);
+
+            // !LLave foranea
+            $table->unsignedBigInteger('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }
