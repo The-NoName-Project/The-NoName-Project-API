@@ -52,7 +52,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        //Editacion desde una api
+        $id=Category::find($id);
     }
 
     /**
@@ -64,7 +65,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $id=Category::find($id);
+        $id->name = $request->input('name');
+        $id->save();
     }
 
     /**
