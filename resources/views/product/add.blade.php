@@ -1,5 +1,5 @@
-@extends('layout.app')
-@extends('layout.head')
+@extends('layouts.app')
+
 @section('content')
 <div class="container justify-content-center">
     <div class="row  justify-content-center">
@@ -22,14 +22,15 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label for="subtitle" class="col-sm-2 col-form-label">Cantidad</label>
+                            <label for="subtitle" class="col-sm-2 col-form-label">Existencias</label>
                             <div class="col-sm-7">
                                 <div class="form-group bmd-form-group is-filled">
-                                    <input class="form-control" name="cantidad" id="cantidad" type="number"
-                                        placeholder="Cantidad" required aria-required="true">
+                                    <input class="form-control" name="existencias" id="existencias" type="number"
+                                        placeholder="Existencias" required aria-required="true">
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <label for="subtitle" class="col-sm-2 col-form-label">Stock</label>
                             <div class="col-sm-7">
@@ -43,26 +44,46 @@
                             <label for="subtitle" class="col-sm-2 col-form-label">Precio</label>
                             <div class="col-sm-7">
                                 <div class="form-group bmd-form-group is-filled">
-                                    <input class="form-control" name="precio" id="precio" type="number"
-                                        placeholder="Precio" required aria-required="true">
+                                    <input class="form-control" name="precio_sale" id="precio_sale" type="number"
+                                        placeholder="Precio de venta" required aria-required="true">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label for="category_id" class="col-sm-2 col-form-label">Categoría</label>
+                            <label for="subtitle" class="col-sm-2 col-form-label">Estatus</label>
                             <div class="col-sm-7">
-                                <select class="form-group bmd-form-group" name="category_id" id="category_id">
-                                    <option selected value="">Selecciona</option>
-                                    @foreach($categorias as $categoria)
-                                        <option value="{!! $categoria->id !!}">{{ $categoria->name }}</option>
-                                    @endforeach
-                                </select>
+                                <div class="form-group bmd-form-group is-filled">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="Activo" 
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Activo
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="Inactivo"
+                                            id="flexRadioDefault2" checked>
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            Inactivo
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="category_id" class="col-sm-2 col-form-label">Categoría</label>
+                                <div class="col-sm-7">
+                                    <select class="form-group bmd-form-group" name="category_id" id="category_id">
+                                        <option selected value="">Selecciona</option>
+                                        @foreach($categorias as $categoria)
+                                            <option value="{!! $categoria->id !!}">{{ $categoria->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <button type="submit" id="btn-guardar" class="btn btn-primary">guardar</button>
+                    <button type="submit" id="btn-guardar" class="btn btn-primary">guardar</button>
             </form>
         </div>
     </div>

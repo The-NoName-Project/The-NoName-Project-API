@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+        // * Rutas de la api para categorias
 Route::post('/categories', [CategoryController::class, 'store']);
 Route::get('/categories', [CategoryController::class, 'show']);
 Route::get('/categories/{id}', [CategoryController::class, 'edit']);

@@ -1,31 +1,31 @@
-@extends('layout.app')
-@extends('layout.head')
+@extends('layouts.app')
+
 @section('content')
 
-<div class="container d-flex align-items-center justify-content-center">
+<div class="container justify-content-center">
     <div class="row justify-content-center">
-        <div class="col-md-10">
-    @if (session('mesage'))
+        <div class="col-10">
+    @if (session('message'))
     <div class="alert alert-info alert-dismissible text-white" role="alert">
-      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('mesage')
+      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('message')
         }}.</span>
       <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     @endif
-    @if (session('mesageDelete'))
+    @if (session('messageDelete'))
     <div class="alert alert-danger alert-dismissible text-white" role="alert">
       <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{
-        session('mesageDelete') }}.</span>
+        session('messageDelete') }}.</span>
       <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     @endif
-    @if (session('mesageUpdate'))
+    @if (session('messageUpdate'))
     <div class="alert alert-info alert-dismissible text-white" role="alert">
-      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('mesageUpdate')
+      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('messageUpdate')
         }}.</span>
       <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
@@ -55,7 +55,8 @@
                 <th>Clave</th>
                 <th>nombre</th>
                 <th>Precio</th>
-                <th>Cantidad</th>
+                <th>Stock</th>
+                <th>Existencias</th>
                 <th>Opciones</th>
                 </tr>
             </thead>
@@ -64,8 +65,9 @@
                 <tr>
                     <td>{{$product->id}}</td>
                     <td>{{$product->name}}</td>
-                    <td>{{$product->precio}}</td>
-                    <td>{{$product->cantidad}}</td>
+                    <td>{{$product->precio_sale}}</td>
+                    <td>{{$product->stock}}</td>
+                    <td>{{$product->existencias}}</td>
                     <td>
                         <button type='button' class="btn btn-primary"><i class="far fa-eye"></i></button>
                         <a type='button' href="/product/{{$product->id}}/edit"><button type='button' class="btn btn-success"><i class="fas fa-pen-square"></i></button></a>
@@ -85,7 +87,7 @@
             </tbody>
 
         </table>
-        {{$products->links()}}
+        
     </div>
 </div>
 @endsection
