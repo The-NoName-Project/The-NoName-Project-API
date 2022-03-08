@@ -14,7 +14,13 @@ class CreateSalesTable extends Migration
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->bigIntger('total_articles');
+            $table->bigInteger('total_price');
+            $table->bigIntger('subtotal');
+            //!LLave foranea
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
