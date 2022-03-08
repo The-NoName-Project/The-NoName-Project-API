@@ -15,9 +15,9 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigIntger('total_articles');
+            $table->bigInteger('total_articles');
             $table->bigInteger('total_price');
-            $table->bigIntger('subtotal');
+            $table->bigInteger('subtotal');
             //!LLave foranea
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
