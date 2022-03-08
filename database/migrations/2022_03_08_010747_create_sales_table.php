@@ -19,8 +19,10 @@ class CreateSalesTable extends Migration
             $table->bigInteger('total_price');
             $table->bigInteger('subtotal');
             //!LLave foranea
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('cliente_id');
+            $table->foreign('cliente_id')->references('id')->on('users');
+            $table->unsignedBigInteger('vendedor_id');
+            $table->foreign('vendedor_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
