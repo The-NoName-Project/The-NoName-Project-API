@@ -30,6 +30,7 @@ class ProductsController extends Controller
         $producto=new Products;
         $categorias = Category::select('id', 'name')->orderBy('name')->get();
         return view('product.add', compact('categorias', 'producto'));
+        dd($request);
     }
 
     /**
@@ -40,14 +41,15 @@ class ProductsController extends Controller
      */
     public function store(StoreProductsRequest $request)
     {
+        
         Products::create([
             'name'=>$request->name,
             'precio_sale'=>$request->precio_sale,
             'existencias'=>$request->existencias,
             'stock'=>$request->stock,
-            'status'=>$request->status,
             'category_id'=>$request->category_id,
         ]);
+        
         return redirect('/product')->with('mesage', 'El producto se ha agregado exitosamente!');
     }
 

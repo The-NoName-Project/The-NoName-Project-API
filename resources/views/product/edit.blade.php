@@ -44,7 +44,7 @@
                                             <div class="col-sm-7">
                                                 <div class="form-group bmd-form-group is-filled">
                                                     <input class="form-control" name="cantidad" id="cantidad"
-                                                        type="number" value="{{ $product->cantidad }}"
+                                                        type="number" value="{{ $product->existencias }}"
                                                         placeholder="Cantidad" required aria-required="true">
                                                 </div>
                                             </div>
@@ -64,7 +64,7 @@
                                             <div class="col-sm-7">
                                                 <div class="form-group bmd-form-group is-filled">
                                                     <input class="form-control" name="precio" id="precio" type="number"
-                                                        value="{{ $product->precio }}" placeholder="Precio" required
+                                                        value="{{ $product->precio_sale }}" placeholder="Precio" required
                                                         aria-required="true">
                                                 </div>
                                             </div>

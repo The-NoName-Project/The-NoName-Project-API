@@ -29,7 +29,6 @@ class StoreProductsRequest extends FormRequest
             'existencias' => ['required'],
             'stock' => ['required'],
             'category_id' => ['required'],
-            'status' => ['required'],
         ];
     }
 }

@@ -52,38 +52,37 @@
                         <div class="row">
                             <label for="subtitle" class="col-sm-2 col-form-label">Estatus</label>
                             <div class="col-sm-7">
-                                <div class="form-group bmd-form-group is-filled">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="Activo" 
-                                            id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
-                                            Activo
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="Inactivo"
-                                            id="flexRadioDefault2" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
-                                            Inactivo
-                                        </label>
-                                    </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" name="status"
+                                        id="flexRadioDefault1" value="Activo">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Activo
+                                    </label>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <label for="category_id" class="col-sm-2 col-form-label">Categoría</label>
-                                <div class="col-sm-7">
-                                    <select class="form-group bmd-form-group" name="category_id" id="category_id">
-                                        <option selected value="">Selecciona</option>
-                                        @foreach($categorias as $categoria)
-                                            <option value="{!! $categoria->id !!}">{{ $categoria->name }}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault" name="status"
+                                        id="flexRadioDefault2" value="Inactivo" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        Inactivo
+                                    </label>
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <label for="category_id" class="col-sm-2 col-form-label">Categoría</label>
+                            <div class="col-sm-7">
+                                <select class="form-group bmd-form-group" name="category_id" id="category_id">
+                                    <option selected value="">Selecciona</option>
+                                    @foreach($categorias as $categoria)
+                                        <option value="{!! $categoria->id !!}">{{ $categoria->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
-                    <button type="submit" id="btn-guardar" class="btn btn-primary">guardar</button>
+                <button type="submit" id="btn-guardar" class="btn btn-primary">guardar</button>
             </form>
         </div>
     </div>
