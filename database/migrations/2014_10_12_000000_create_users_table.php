@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->bigInteger('phone');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('type', ['Admin', 'Cliente']);
+            $table->enum('type', ['Cliente','Admin']);
             $table->enum('status', ['Activo', 'Inactivo']);
             $table->rememberToken();
             $table->timestamps();

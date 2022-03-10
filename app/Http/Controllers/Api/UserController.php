@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -15,7 +16,6 @@ class UserController extends Controller
     public function index()
     {
         $users=User::all();
-        return view('clients.index', compact('users'));
     }
 
     /**
@@ -25,8 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $user=new User;
-        return view('clients.add', compact('user'));
+        //
     }
 
     /**
@@ -37,17 +36,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create([
-            'name'=>$request->name,
-            'app'=>$request->app,
-            'apm'=>$request->apm,
-            'fn'=>$request->fn,
-            'phone'=>$request->phone,
-            'email'=>$request->email,
-            'password'=>$request->password,
-        ]);
-
-        return redirect('/clients')->with('message', 'El cliente se a registrado exitosamente!');
+        $users=new User;
+        $users->name=$request->input('name');
+        $users->app=$request->input('app');
+        $users->apm=$request->input('apm');
+        $users->email=$request->input('email');
+        $users->password=$request->input('password');
+        $users->fn=$request->input('fn');
+        $users->phone=$request->input('phone');
+        $users->save();
     }
 
     /**
@@ -56,9 +53,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $id=User::all();
+        return response()->json($id);
     }
 
     /**
@@ -69,10 +67,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user=User::find($id);
-        return view('clients.edit', compact(
-            'user'
-        ));
+        $id=User::find($id);
     }
 
     /**
@@ -84,12 +79,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user=User::findOrFail($id);
-        $user->update($request->all());
-
-        return redirect('/clients')->with(
-            'messageUpdate', 'Los datos del usuario han sido actualizados!'
-        );
+        $id=User::find($id);
+        $id->name=$request->input('name');
+        $id->app=$request->input('app');
+        $id->apm=$request->input('apm');
+        $id->email=$request->input('email');
+        $id->password=$request->input('password');
+        $id->fn=$request->input('fn');
+        $id->phone=$request->input('phone');
+        $id->save();
     }
 
     /**
@@ -100,9 +98,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $users=User::findOrFail($id);
-        $users->delete();
-
-        return redirect('/clients')->with('messageDelete', 'El usuario ha sido eliminado!');
+        $id=User::find($id);
+        $id->delete();
     }
 }

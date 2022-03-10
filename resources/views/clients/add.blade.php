@@ -1,10 +1,10 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
     <div class="container justify-content-center">
         <div class="row justify-content-center">
             <div class="col-8">
-                <form method="POST" action="{{route('client.store', ['id'=>$cliente->id])}}" class="form-horizontal">
+                <form method="POST" action="{{route('clients.store', ['id'=>$user->id])}}" class="form-horizontal">
                     @csrf
                     <div class="card">
                         <div class="card-header card-header-primary">
@@ -37,14 +37,6 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="title" class="col-sm-2 col-form-label">RFC</label>
-                                <div class="col-sm-7">
-                                    <div class="form-group bmd-form-group is-filled">
-                                        <input class="form-control" name="rfc"  id="title" type="text" placeholder="Registro Federal del Contribuyente" required aria-required="true">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <label for="title" class="col-sm-2 col-form-label">Email</label>
                                 <div class="col-sm-7">
                                     <div class="form-group bmd-form-group is-filled">
@@ -53,10 +45,18 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label for="subtitle" class="col-sm-2 col-form-label">Domicilio</label>
+                                <label for="title" class="col-sm-2 col-form-label">Contraseña</label>
                                 <div class="col-sm-7">
                                     <div class="form-group bmd-form-group is-filled">
-                                        <input class="form-control" name="home_address" id="home_address" type="text" placeholder="Domicilio" required aria-required="true">
+                                        <input class="form-control" name="password"  id="title" type="password" placeholder="********" required aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="subtitle" class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+                                <div class="col-sm-7">
+                                    <div class="form-group bmd-form-group is-filled">
+                                        <input class="form-control" name="fn" id="fn" type="date"  required aria-required="true">
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                                 <label for="subtitle" class="col-sm-2 col-form-label">Numero Telefonico</label>
                                 <div class="col-sm-7">
                                     <div class="form-group bmd-form-group is-filled">
-                                        <input class="form-control" name="phone_number" id="phone_number" type="number" placeholder="Numero telefonico" required aria-required="true">
+                                        <input class="form-control" name="phone" id="phone" type="number" placeholder="Numero telefonico" required aria-required="true">
                                     </div>
                                 </div>
                             </div>

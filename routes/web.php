@@ -48,3 +48,11 @@ Route::post('/details', [DetailSalesController::class, 'store'])->name('details.
 Route::put('/details/{id}/update', [DetailSalesController::class, 'update'])->name('details.update');
 Route::get('/details/{id}/edit', [DetailSalesController::class, 'edit'])->name('details.edit');
 Route::delete('/details/{detailSales}', [DetailSalesController::class, 'destroy'])->name('details.destroy');
+
+//User rutas
+Route::get('/clients', [UserController::class, 'index'])->name('clients.index');
+Route::get('/clients/add', [UserController::class, 'create'])->name('clients.create');
+Route::post('/clients', [UserController::class, 'store'])->name('clients.store');
+Route::put('/clients/{id}/update', [UserController::class, 'update'])->name('clients.update');
+Route::get('/clients/{id}/edit', [UserController::class, 'edit'])->name('clients.edit');
+Route::delete('/clients/{user}', [UserController::class, 'destroy'])->name('clients.destroy');

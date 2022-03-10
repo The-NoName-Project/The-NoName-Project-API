@@ -1,7 +1,7 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
-    <div class="container d-flex align-items-center justify-content-center">
+    <div class="container align-items-center justify-content-center">
         <div class="row justify-content-center">
             <div class="col-md-10">
                 @if (session('message'))
@@ -31,7 +31,7 @@
                         </button>
                     </div>
                 @endif
-                <div class="container-fluid py-4">
+                <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="card my-4">
@@ -39,7 +39,7 @@
                                     <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                         <h6 class="text-white text-capitalize ps-3">Lista De Clientes</h6>
                                         <div class="float-end">
-                                            <a href="/client/add">
+                                            <a href="/clients/add">
                                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Agregar">
                                                     <i class="fas fa-plus-circle"></i>
                                                 </button>
@@ -53,23 +53,27 @@
                                     <tr>
                                         <th>Clave</th>
                                         <th>Nombre</th>
-                                        <th>Domicilio</th>
+                                        <th>Correo Electronico</th>
+                                        <th>Contraseña</th>
                                         <th>Telefono</th>
+                                        <th>Tipo</th>    
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($client as $cliente)
+                                    @foreach($users as $cliente)
                                         <tr>
                                             <td>{{$cliente->id}}</td>
                                             <td>{{$cliente->name}}</td>
-                                            <td>{{$cliente->home_address}}</td>
-                                            <td>{{$cliente->phone_number}}</td>
+                                            <td>{{$cliente->email}}</td>
+                                            <td>{{$cliente->password}}</td>
+                                            <td>{{$cliente->phone}}</td>
+                                            <td>{{$cliente->type}}</td>
                                             <td>
                                                 <button type='button' class="btn btn-primary"><i class="far fa-eye"></i></button>
-                                                <a type='button' href="/client/{{$cliente->id}}/edit"><button type='button' class="btn btn-success"><i class="fas fa-pen-square"></i></button></a>
+                                                <a type='button' href="/clients/{{$cliente->id}}/edit"><button type='button' class="btn btn-success"><i class="fas fa-pen-square"></i></button></a>
 
 
-                                                <form action="{{ route('client.destroy', $cliente) }}" method="POST">
+                                                <form action="{{ route('clients.destroy', $cliente) }}" method="POST">
                                                     @method('delete')
                                                     @csrf
                                                     <button type='submit' class="btn btn-sm btn-danger"
@@ -81,9 +85,6 @@
                                         </tr>
                                     @endforeach
                                     </tbody>
-
                                 </table>
-                                {{$client->links()}}
-                            </div>
                         </div>
 @endsection
