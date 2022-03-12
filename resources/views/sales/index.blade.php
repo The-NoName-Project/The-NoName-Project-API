@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
 
@@ -52,18 +52,20 @@
                             <tr>
                                 <th>Clave</th>
                                 <th>Cliente</th>
-                                <th>Producto</th>
-                                <th>Categorias</th>
-                                <th>Cantidad</th>
+                                <th>Vendedor</th>
+                                <th>Subtotal</th>
+                                <th>Total</th>
+                                <th>Opciones</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($sales as $ventas)
                                 <tr>
                                     <td>{{$ventas->id}}</td>
-                                    <td>{{$ventas->client_id}}</td>
-                                    <td>{{$ventas->product_id}}</td>
-                                    <td>{{$ventas->category_id}}</td>
+                                    <td>{{$ventas->cliente_id}}</td>
+                                    <td>{{$ventas->vendedor_id}}</td>
+                                    <td>{{$ventas->subtotal}}</td>
+                                    <td>{{$ventas->total_price}}</td>
                                     <td>
                                         <button type='button' class="btn btn-primary"><i class="far fa-eye"></i></button>
                                         <a type='button' href="/sales/{{$ventas->id}}/edit"><button type='button' class="btn btn-success"><i class="fas fa-pen-square"></i></button></a>
@@ -75,7 +77,6 @@
                             </tbody>
 
                         </table>
-                        {{$sales->links()}}
                     </div>
                 </div>
 @endsection

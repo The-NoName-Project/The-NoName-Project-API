@@ -50,7 +50,7 @@ class ProductsController extends Controller
             'category_id'=>$request->category_id,
         ]);
         
-        return redirect('/product')->with('mesage', 'El producto se ha agregado exitosamente!');
+        return redirect('/product')->with('message', 'El producto se ha agregado exitosamente!');
     }
 
     /**

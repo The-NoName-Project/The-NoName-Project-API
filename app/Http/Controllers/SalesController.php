@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreSalesRequest;
 use App\Http\Requests\UpdateSalesRequest;
 use App\Models\Sales;
+use App\Models\Products;
+use App\Models\Category;
+use App\Models\User;
 
 class SalesController extends Controller
 {
@@ -15,7 +18,8 @@ class SalesController extends Controller
      */
     public function index()
     {
-        //
+        $sales = Sales::all();
+        return view('sales.index', compact('sales'));
     }
 
     /**
@@ -25,7 +29,10 @@ class SalesController extends Controller
      */
     public function create()
     {
-        //
+        $products = Products::select('id', 'name')->orderBy('name')->get();
+        $users = User::select('id', 'name')->orderBy('name')->get();
+        $sales=new Sales;
+        return view('sales.add', compact('products', 'users', 'sales'));
     }
 
     /**
@@ -36,7 +43,15 @@ class SalesController extends Controller
      */
     public function store(StoreSalesRequest $request)
     {
-        //
+        Sales::create([
+            'total_articles'=>$request->total_articles,
+            'total_price'=>$request->total_price,
+            'subtotal'=>$request->subtotal,
+            'cliente_id'=>$request->cliente_id,
+            'vendedor_id'=>$request->vendedor_id, 
+        ]);
+        return redirect('/sales')->with('message', 'La venta se ha agregado exitosamente!');
+
     }
 
     /**
@@ -56,9 +71,12 @@ class SalesController extends Controller
      * @param  \App\Models\Sales  $sales
      * @return \Illuminate\Http\Response
      */
-    public function edit(Sales $sales)
+    public function edit($id)
     {
-        //
+        $products = Products::select('id', 'name')->orderBy('name')->get();
+        $users = User::select('id', 'name')->orderBy('name')->get();
+        $sales=Sales::find($id);
+        return view('sales.edit', compact('sales', 'products', 'users'));
     }
 
     /**
@@ -68,9 +86,11 @@ class SalesController extends Controller
      * @param  \App\Models\Sales  $sales
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSalesRequest $request, Sales $sales)
+    public function update(UpdateSalesRequest $request, Sales $sales,$id)
     {
-        //
+        $sales=Sales::find($id);
+        $sales->update($request->all());
+        return redirect('/sales')->with('message', 'La venta se ha actualizado exitosamente!');
     }
 
     /**
@@ -81,6 +101,7 @@ class SalesController extends Controller
      */
     public function destroy(Sales $sales)
     {
-        //
+        $sales->delete();
+        return redirect('/sales')->with('messageDelete', 'La venta se ha eliminado exitosamente!');
     }
 }
