@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container justify-content-center">
@@ -31,20 +31,21 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label for="product_id" class="col-sm-2 col-form-label">Producto</label>
+                            <label for="products_id" class="col-sm-2 col-form-label">Producto</label>
                             <div class="col-sm-7">
-                                <select class="form-group bmd-form-group" name="product_id" id="product_id">
+                                <select class="form-select" name="products_id" id="products_id">
                                     <option selected value="">Selecciona</option>
-                                    @foreach($productos as $producto)
+                                    @foreach($products as $producto)
                                         <option value="{!! $producto->id !!}">{{ $producto->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
+                        <br>
                         <div class="row">
-                            <label for="sale_id" class="col-sm-2 col-form-label">Venta</label>
+                            <label for="sales_id" class="col-sm-2 col-form-label">Venta</label>
                             <div class="col-sm-7">
-                                <select class="form-group bmd-form-group" name="sale_id" id="sale_id">
+                                <select class="form-select" name="sales_id" id="sales_id">
                                     <option selected value="">Selecciona</option>
                                     @foreach($sales as $sale)
                                         <option value="{!! $sale->id !!}">{{ $sale->id }}</option>
@@ -54,8 +55,8 @@
                         </div>
                     </div>
                 </div>
-
                 <button type="submit" id="btn-guardar" class="btn btn-primary">guardar</button>
+                <a href="/" class="btn btn-danger" type="button">Cancelar</a>
             </form>
         </div>
     </div>

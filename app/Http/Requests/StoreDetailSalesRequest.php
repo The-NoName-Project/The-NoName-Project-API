@@ -13,7 +13,7 @@ class StoreDetailSalesRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class StoreDetailSalesRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'cantidad'=>'required',
+            'subtotal'=>'required',
+            'sales_id'=>'required',
+            'products_id'=>'required',
         ];
     }
 }

@@ -3,27 +3,27 @@
 @section('content')
 
     <div class="panel-body">
-        @if (session('mesage'))
+        @if (session('message'))
             <div class="alert alert-info alert-dismissible text-white" role="alert">
-      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('mesage')
+      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('message')
         }}.</span>
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         @endif
-        @if (session('mesageDelete'))
+        @if (session('messageDelete'))
             <div class="alert alert-danger alert-dismissible text-white" role="alert">
       <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{
-        session('mesageDelete') }}.</span>
+        session('messageDelete') }}.</span>
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         @endif
-        @if (session('mesageUpdate'))
+        @if (session('messageUpdate'))
             <div class="alert alert-info alert-dismissible text-white" role="alert">
-      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('mesageUpdate')
+      <span class="text-sm"> <a href="javascript:;" class="alert-link text-white">Excelente</a>. {{ session('messageUpdate')
         }}.</span>
                 <button type="button" class="btn-close text-lg py-3 opacity-10" data-bs-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>

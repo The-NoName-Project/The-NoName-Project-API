@@ -91,7 +91,7 @@ class ProductsController extends Controller
     {
         $product=Products::findOrFail($id);
         $product->update($request->all());
-        return redirect('/product')->with('mesage', 'el producto se ha actualizado exitosamente!');
+        return redirect('/product')->with('messageUpdate', 'el producto se ha actualizado exitosamente!');
     }
 
     /**
