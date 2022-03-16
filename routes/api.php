@@ -55,7 +55,7 @@ Route::delete('/sales/{id}',[SalesController::class, 'destroy']);
         // * Rutas de la api para detalles de ventas
 Route::post('/detailsales',[DetailSalesController::class, 'store']);
 Route::get('/detailsales',[DetailSalesController::class, 'index']);
-Route::get('/detailsales/{id}',[DetailSalesController::class, 'show']);
+Route::get('/detailsales/{deta}',[DetailSalesController::class, 'show']);
 Route::get('/detailsales/{id}',[DetailSalesController::class, 'edit']);
 Route::put('/detailsales/{id}',[DetailSalesController::class, 'update']);
 Route::delete('/detailsales/{id}',[DetailSalesController::class, 'destroy']);        

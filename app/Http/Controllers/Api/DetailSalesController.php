@@ -44,8 +44,8 @@ class DetailSalesController extends Controller
      */
     public function show($id)
     {
-        $id=DetailSales::find($id);
-        return response()->json($id);
+        $deta=DetailSales::find($id);
+        return response()->json($deta);
     }
 
     /**
