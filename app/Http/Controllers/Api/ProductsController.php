@@ -17,6 +17,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Products::all();
+        return response()->json($products, 200);
     }
 
     /**
@@ -52,10 +53,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $id = Products::all();
-        return response()->json($id);
+        $products = Products::find($id);
+        return response()->json($products);
     }
 
     /**

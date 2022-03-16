@@ -29,9 +29,9 @@ Route::put('/categories/{id}', [CategoryController::class, 'update']);
 Route::delete('/categories/{id}', [CategoryController::class, 'destroy']);
 
         // * Rutas de la api para productos
-Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products', [ProductsController::class, 'index']);
 Route::post('/products', [ProductsController::class, 'store']);
-Route::get('/products', [ProductsController::class, 'show']);
+Route::get('/products/{products}', [ProductsController::class, 'show']);
 Route::get('/products/{id}', [ProductsController::class, 'edit']);
 Route::put('/products/{id}', [ProductsController::class, 'update']);
 Route::delete('/products/{id}', [ProductsController::class, 'destroy']);
