@@ -47,7 +47,7 @@ Route::delete('/clients/{id}',[UserController::class, 'destroy']);
         // * Rutas de la api para ventas
 Route::post('/sales',[SalesController::class, 'store']);
 Route::get('/sales',[SalesController::class, 'index']);
-Route::get('/sales/{id}',[SalesController::class, 'show']); //Mostrar una sola venta
+Route::get('/sales/{sale}',[SalesController::class, 'show']); //Mostrar una sola venta
 Route::get('/sales/{id}',[SalesController::class, 'edit']);
 Route::put('/sales/{id}',[SalesController::class, 'update']);
 Route::delete('/sales/{id}',[SalesController::class, 'destroy']);
