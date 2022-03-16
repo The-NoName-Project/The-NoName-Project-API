@@ -48,7 +48,7 @@ class SalesController extends Controller
     {
         //Mostrar una sola venta
         $id = Sales::find($id);
-        return response()->json($sale);
+        return response()->json($id);
     }
 
     /**
