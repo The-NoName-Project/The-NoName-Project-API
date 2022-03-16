@@ -16,6 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::all();
+        return response()->json($category);
     }
 
 
@@ -38,10 +39,10 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $id = Category::all();
-        return response()->json($id);        
+        $categories = Category::find($id);
+        return response()->json($categories);
     }
 
     /**
