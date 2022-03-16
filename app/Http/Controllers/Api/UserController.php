@@ -16,16 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $users=User::all();
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json($users, 200);
     }
 
     /**
@@ -53,10 +44,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
-        $id=User::all();
-        return response()->json($id);
+        $user=User::find($id);
+        return response()->json($user);
     }
 
     /**

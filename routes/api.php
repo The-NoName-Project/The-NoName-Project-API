@@ -39,7 +39,7 @@ Route::delete('/products/{id}', [ProductsController::class, 'destroy']);
         // * Rutas de la api para usuarios
 Route::get('/clients', [UserController::class, 'index']);
 Route::post('/clients',[UserController::class, 'store']);
-Route::get('/clients',[UserController::class, 'show']);
+Route::get('/clients/{user}',[UserController::class, 'show']);
 Route::get('/clients/{id}',[UserController::class, 'edit']);
 Route::put('/clients/{id}',[UserController::class, 'update']);
 Route::delete('/clients/{id}',[UserController::class, 'destroy']);
