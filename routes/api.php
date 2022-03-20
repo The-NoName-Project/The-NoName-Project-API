@@ -52,6 +52,10 @@ Route::get('/detailsales/{id}/edit',[ApiDetailSalesController::class, 'edit']);
 Route::put('/detailsales/{id}/update',[ApiDetailSalesController::class, 'update']);
 Route::delete('/detailsales/{id}/delete',[ApiDetailSalesController::class, 'destroy']);        
 
-//Rutas de la api para el login de usuarios
+//Rutas de la api para el login de usuarios y restablecer contraseña
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/reset-password', [AuthController::class, 'resetPassword']);
+Route::get('/users', [AuthController::class, 'showAll']);
+Route::get('/users/{id}', [AuthController::class, 'showOne']);
+Route::put('/users/{id}/update', [AuthController::class, 'update']);

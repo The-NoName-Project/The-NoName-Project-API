@@ -72,4 +72,39 @@ class AuthController extends Controller
         }
         return response()->json($res, $code);
     }
+
+    public function resetPassword(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+   
+        if($validator->fails()){
+            return $this->handleError($validator->errors());       
+        }
+   
+        $user = User::where('email', $request->email)->first();
+        if(!$user){
+            return $this->handleError('User not found.', ['error'=>'User not found']);
+        }
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return $this->handleResponse($user, 'Password reset successfully.');
+    }
+
+    public function showAll(){
+        $users = User::all();
+        return response()->json($users);
+    }
+
+    public function showOne($id){
+        $user = User::find($id);
+        return response()->json($user);
+    }
+
+    public function update(Request $request, $id){
+        $user = User::find($id);
+        $user->update($request->all());
+        return $user;
+    }
 }

@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Sales;
+use App\Models\Products;
+use App\Models\DetailSales;
 
 class ApiDetailSalesController extends Controller
 {
@@ -48,17 +51,6 @@ class ApiDetailSalesController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $id=DetailSales::find($id);
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -68,11 +60,8 @@ class ApiDetailSalesController extends Controller
     public function update(Request $request, $id)
     {
         $id=DetailSales::find($id);
-        $id->cantidad = $request->input('cantidad');
-        $id->subtotal= $request->input('subtotal');
-        $id->sales_id = $request->input('sales_id');
-        $id->products_id = $request->input('products_id');
-        $id->save();
+        $id->update($request->all());
+        return $id;
     }
 
     /**
