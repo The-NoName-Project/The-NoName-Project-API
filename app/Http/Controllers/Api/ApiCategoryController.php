@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Sales;
-use App\Models\Products;
+use App\Models\Category;
 
-class SalesController extends Controller
+class ApiCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,10 +15,19 @@ class SalesController extends Controller
      */
     public function index()
     {
-        $sales = Sales::all();
-        return response()->json($sales);
+        $category = Category::all();
+        return response()->json($category);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -29,13 +37,9 @@ class SalesController extends Controller
      */
     public function store(Request $request)
     {
-        $sales = new Sales;
-        $sales->total_articles = $request->input('total_articles');
-        $sales->total_price = $request->input('total_price');
-        $sales->subtotal = $request->input('subtotal');
-        $sales->cliente_id = $request->input('cliente_id');
-        $sales->vendedor_id = $request->input('vendedor_id');
-        $sales->save();
+        $category = new Category;
+        $category->name = $request->input('name');
+        $category->save();
     }
 
     /**
@@ -46,9 +50,8 @@ class SalesController extends Controller
      */
     public function show($id)
     {
-        //Mostrar una sola venta
-        $sale = Sales::find($id);
-        return response()->json($sale);
+        $categories = Category::find($id);
+        return response()->json($categories);
     }
 
     /**
@@ -59,7 +62,7 @@ class SalesController extends Controller
      */
     public function edit($id)
     {
-        $id=Sales::find($id);
+        //
     }
 
     /**
@@ -71,13 +74,9 @@ class SalesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $id=Sales::find($id);
-        $id->total_articles = $request->input('total_articles');
-        $id->total_price = $request->input('total_price');
-        $id->subtotal = $request->input('subtotal');
-        $id->cliente_id = $request->input('cliente_id');
-        $id->vendedor_id = $request->input('vendedor_id');
-        $id->save();
+        $category = Category::find($id);
+        $category->update($request->all());
+        return $category;
     }
 
     /**
@@ -88,7 +87,7 @@ class SalesController extends Controller
      */
     public function destroy($id)
     {
-        $id=Sales::find($id);
         $id->delete();
+        return response()->json(null,204);
     }
 }

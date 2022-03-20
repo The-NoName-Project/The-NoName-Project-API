@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Sales;
+use App\Models\Products;
 
-class CategoryController extends Controller
+class ApiSalesController extends Controller
 {
-    /**
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $category = Category::all();
-        return response()->json($category);
+        $sales = Sales::all();
+        return response()->json($sales);
     }
 
 
@@ -28,9 +29,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = new Category;
-        $category->name = $request->input('name');
-        $category->save();
+        $sales = new Sales;
+        $sales->total_articles = $request->input('total_articles');
+        $sales->total_price = $request->input('total_price');
+        $sales->subtotal = $request->input('subtotal');
+        $sales->cliente_id = $request->input('cliente_id');
+        $sales->vendedor_id = $request->input('vendedor_id');
+        $sales->save();
     }
 
     /**
@@ -41,20 +46,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $categories = Category::find($id);
-        return response()->json($categories);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //Editacion desde una api
-        $id=Category::find($id);
+        //Mostrar una sola venta
+        $sale = Sales::find($id);
+        return response()->json($sale);
     }
 
     /**
@@ -66,9 +60,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $id=Category::find($id);
-        $id->name = $request->input('name');
-        $id->save();
+        $id=Sales::find($id);
+        $id->update($request->all());
+        return $id;
     }
 
     /**
@@ -79,7 +73,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $id=Category::find($id);
+        $id=Sales::find($id);
         $id->delete();
     }
 }

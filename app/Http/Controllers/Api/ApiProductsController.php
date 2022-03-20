@@ -6,9 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Products;
-
-class ProductsController extends Controller
-{
+class ApiProductsController extends Controller{
     /**
      * Display a listing of the resource.
      *
@@ -50,16 +48,6 @@ class ProductsController extends Controller
         return response()->json($products);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $id = Products::find($id);
-    }
 
     /**
      * Update the specified resource in storage.
@@ -71,12 +59,8 @@ class ProductsController extends Controller
     public function update(Request $request, $id)
     {
         $id = Products::find($id);
-        $id->name = $request->input('name');
-        $id->precio_sale = $request->input('precio_sale');
-        $id->cantidad = $request->input('cantidad');
-        $id->stock= $request->input('stock');
-        $id->category_id = $request->input('category_id');
-        $id->save();
+        $id->update($request->all());
+
     }
 
     /**
