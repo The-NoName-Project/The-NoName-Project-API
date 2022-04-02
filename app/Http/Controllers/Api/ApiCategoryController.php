@@ -17,7 +17,7 @@ class ApiCategoryController extends ApiController
     {
         $category = Category::all();
         //return response()->json($category);
-        return $this->showAll($category);
+        return $this->showAll($category, 200);
     }
 
     /**
@@ -41,7 +41,7 @@ class ApiCategoryController extends ApiController
         $category = new Category;
         $category->name = $request->input('name');
         $category->save();
-        return $this->showMessage('Categoria creada');
+        return $this->showMessage('Categoria creada', 200);
     }
 
     /**
@@ -54,7 +54,7 @@ class ApiCategoryController extends ApiController
     {
         $categories = Category::find($id);
         //return response()->json($categories);
-        return $this->showOne($categories);
+        return $this->showOne($categories, 200);
     }
 
     /**
@@ -80,7 +80,7 @@ class ApiCategoryController extends ApiController
         $category = Category::find($id);
         $category->update($request->all());
         //return $category;
-        return $this->showUpdate('Categoria actualizada');
+        return $this->showUpdate('Categoria actualizada', 200);
     }
 
     /**
@@ -93,6 +93,6 @@ class ApiCategoryController extends ApiController
     {
         $id->delete();
         //return response()->json(null,204);
-        return $this->showDelete('Categoria eliminada');
+        return $this->showDelete('Categoria eliminada', 200);
     }
 }

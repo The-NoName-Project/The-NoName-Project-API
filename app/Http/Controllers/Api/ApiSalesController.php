@@ -18,7 +18,7 @@ class ApiSalesController extends ApiController
     {
         $sales = Sales::all();
         //return response()->json($sales);
-        return $this->showAll($sales);
+        return $this->showAll($sales, 200);
     }
 
 
@@ -34,7 +34,7 @@ class ApiSalesController extends ApiController
         $sales->cliente_id = $request->input('cliente_id');
         $sales->vendedor_id = $request->input('vendedor_id');
         $sales->save();
-        return $this->showMessage('Venta creada');
+        return $this->showMessage('Venta creada', 200);
     }
 
     /**
@@ -47,7 +47,7 @@ class ApiSalesController extends ApiController
     {
         $sale = Sales::find($id);
         //return response()->json($sale);
-        return $this->showOne($sale);
+        return $this->showOne($sale, 200);
     }
 
     /**
@@ -62,7 +62,7 @@ class ApiSalesController extends ApiController
         $id=Sales::find($id);
         $id->update($request->all());
         //return $id;
-        return $this->showMessage('Venta actualizada');
+        return $this->showUpdate('Venta actualizada', 200);
     }
 
     /**
@@ -75,6 +75,6 @@ class ApiSalesController extends ApiController
     {
         $id=Sales::find($id);
         $id->delete();
-        return $this->showDelete('Venta eliminada');
+        return $this->showDelete('Venta eliminada', 200);
     }
 }

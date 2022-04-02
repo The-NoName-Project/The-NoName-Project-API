@@ -15,7 +15,8 @@ class ApiProductsController extends ApiController{
     public function index()
     {
         $products = Products::all();
-        return response()->json($products, 200);
+        //return response()->json($products, 200);
+        return $this->showAll($products, 200);
     }
 
 
@@ -34,6 +35,7 @@ class ApiProductsController extends ApiController{
         $products->stock= $request->input('stock');
         $products->category_id = $request->input('category_id');
         $products->save();
+        return $this->showMessage('Producto creado correctamente', 200);
     }
 
     /**
@@ -45,7 +47,7 @@ class ApiProductsController extends ApiController{
     public function show($id)
     {
         $products = Products::find($id);
-        return response()->json($products);
+        return $this->showOne($products, 200);
     }
 
 
@@ -60,7 +62,7 @@ class ApiProductsController extends ApiController{
     {
         $id = Products::find($id);
         $id->update($request->all());
-
+        return $this->showUpdate('Producto actualizado correctamente', 200);
     }
 
     /**
@@ -73,5 +75,6 @@ class ApiProductsController extends ApiController{
     {
         $id = Products::find($id);
         $id->delete();
+        return $this->showDelete('Producto eliminado correctamente', 200);
     }
 }

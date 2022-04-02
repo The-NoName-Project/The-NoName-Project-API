@@ -17,8 +17,9 @@ class ApiDetailSalesController extends ApiController
      */
     public function index()
     {
-     $detail=DetailSales::all();
-     return response()->json($detail);   
+        $detail=DetailSales::all();
+     //return response()->json($detail);   
+        return $this->showAll($detail, 200);
     }
 
 
@@ -36,6 +37,7 @@ class ApiDetailSalesController extends ApiController
         $detail->sales_id = $request->input('sales_id');
         $detail->products_id = $request->input('products_id');
         $detail->save();
+        return $this->showMessage('Detalle de venta creado correctamente', 200);
     }
 
     /**
@@ -47,7 +49,8 @@ class ApiDetailSalesController extends ApiController
     public function show($id)
     {
         $deta=DetailSales::find($id);
-        return response()->json($deta);
+        //return response()->json($deta);
+        return $this->showOne($deta, 200);
     }
 
     /**
@@ -61,7 +64,8 @@ class ApiDetailSalesController extends ApiController
     {
         $id=DetailSales::find($id);
         $id->update($request->all());
-        return $id;
+        //return $id;
+        return $this->showUpdate('Detalle de venta actualizado correctamente', 200);
     }
 
     /**
@@ -74,5 +78,6 @@ class ApiDetailSalesController extends ApiController
     {
         $id=DetailSales::find($id);
         $id->delete();
+        return $this->showDelete('Detalle de venta eliminado correctamente', 200);
     }
 }
