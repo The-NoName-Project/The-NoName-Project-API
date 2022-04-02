@@ -15,7 +15,8 @@ class AuthController extends Controller
     {
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $auth = Auth::User(); 
-            $success['token'] =  $auth->createToken('LaravelSanctumAuth')->plainTextToken; 
+            //Crear token sin guardarlo dentro de corchetes
+            $success ['token'] =  $auth->createToken('LaravelSanctumAuth')->plainTextToken; 
             $success['name'] =  $auth->name;
    
             return $this->handleResponse($success, 'User logged-in!');
@@ -54,8 +55,8 @@ class AuthController extends Controller
     public function handleResponse($result, $msg)
     {
     	$res = [
-            'success' => true,
-            'data'    => $result,
+            'success' => true, 
+            'data' => $result,
             'message' => $msg,
         ];
         return response()->json($res, 200);
@@ -106,5 +107,15 @@ class AuthController extends Controller
         $user = User::find($id);
         $user->update($request->all());
         return $user;
+    }
+
+
+    //Guardar el token y mandarlo en la api
+    public function logout(Request $request)
+    {
+        $request->user()->token()->revoke();
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
     }
 }

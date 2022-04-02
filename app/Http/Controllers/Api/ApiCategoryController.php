@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Models\Category;
 
-class ApiCategoryController extends Controller
+class ApiCategoryController extends ApiController
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,8 @@ class ApiCategoryController extends Controller
     public function index()
     {
         $category = Category::all();
-        return response()->json($category);
+        //return response()->json($category);
+        return $this->showAll($category);
     }
 
     /**
@@ -40,6 +41,7 @@ class ApiCategoryController extends Controller
         $category = new Category;
         $category->name = $request->input('name');
         $category->save();
+        return $this->showMessage('Categoria creada');
     }
 
     /**
@@ -51,7 +53,8 @@ class ApiCategoryController extends Controller
     public function show($id)
     {
         $categories = Category::find($id);
-        return response()->json($categories);
+        //return response()->json($categories);
+        return $this->showOne($categories);
     }
 
     /**
@@ -76,7 +79,8 @@ class ApiCategoryController extends Controller
     {
         $category = Category::find($id);
         $category->update($request->all());
-        return $category;
+        //return $category;
+        return $this->showUpdate('Categoria actualizada');
     }
 
     /**
@@ -88,6 +92,7 @@ class ApiCategoryController extends Controller
     public function destroy($id)
     {
         $id->delete();
-        return response()->json(null,204);
+        //return response()->json(null,204);
+        return $this->showDelete('Categoria eliminada');
     }
 }

@@ -24,38 +24,39 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/categories', [ApiCategoryController::class, 'index']);
 Route::post('/categories/store', [ApiCategoryController::class, 'store']);
 Route::get('/categories/{categories}', [ApiCategoryController::class, 'show']);
-Route::get('/categories/{id}/edit', [ApiCategoryController::class, 'edit']);
-Route::put('/categories/{id}/update', [ApiCategoryController::class, 'update']);
-Route::delete('/categories/{id}/delete', [ApiCategoryController::class, 'destroy']);
+Route::get('/categories/edit/{id}', [ApiCategoryController::class, 'edit']);
+Route::put('/categories/update/{id}', [ApiCategoryController::class, 'update']);
+Route::delete('/categories/delete/{id}', [ApiCategoryController::class, 'destroy']);
 
         // * Rutas de la api para productos
 Route::get('/products', [ApiProductsController::class, 'index']);
 Route::post('/products/store', [ApiProductsController::class, 'store']);
 Route::get('/products/{products}', [ApiProductsController::class, 'show']);
-Route::get('/products/{id}/edit', [ApiProductsController::class, 'edit']);
-Route::put('/products/{id}/update', [ApiProductsController::class, 'update']);
-Route::delete('/products/{id}/delete', [ApiProductsController::class, 'destroy']);
+Route::get('/products/edit/{id}', [ApiProductsController::class, 'edit']);
+Route::put('/products/update/{id}', [ApiProductsController::class, 'update']);
+Route::delete('/products/delete/{id}', [ApiProductsController::class, 'destroy']);
 
         // * Rutas de la api para ventas
 Route::get('/sales',[ApiSalesController::class, 'index']);
 Route::post('/sales/store',[ApiSalesController::class, 'store']);
 Route::get('/sales/{sale}',[ApiSalesController::class, 'show']); //Mostrar una sola venta
-Route::get('/sales/{id}/edit',[ApiSalesController::class, 'edit']);
-Route::put('/sales/{id}/update',[ApiSalesController::class, 'update']);
-Route::delete('/sales/{id}/delete',[ApiSalesController::class, 'destroy']);
+Route::get('/sales/edit/{id}',[ApiSalesController::class, 'edit']);
+Route::put('/sales/update/{id}',[ApiSalesController::class, 'update']);
+Route::delete('/sales/delete/{id}',[ApiSalesController::class, 'destroy']);
 
         // * Rutas de la api para detalles de ventas
 Route::get('/detailsales',[ApiDetailSalesController::class, 'index']);
 Route::post('/detailsales/store',[ApiDetailSalesController::class, 'store']);
 Route::get('/detailsales/{deta}',[ApiDetailSalesController::class, 'show']);
-Route::get('/detailsales/{id}/edit',[ApiDetailSalesController::class, 'edit']);
-Route::put('/detailsales/{id}/update',[ApiDetailSalesController::class, 'update']);
-Route::delete('/detailsales/{id}/delete',[ApiDetailSalesController::class, 'destroy']);        
+Route::get('/detailsales/edit/{id}',[ApiDetailSalesController::class, 'edit']);
+Route::put('/detailsales/update/{id}',[ApiDetailSalesController::class, 'update']);
+Route::delete('/detailsales/delete/{id}',[ApiDetailSalesController::class, 'destroy']);        
 
 //Rutas de la api para el login de usuarios y restablecer contraseña
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/reset-password', [AuthController::class, 'resetPassword']);
 Route::get('/users', [AuthController::class, 'showAll']);
 Route::get('/users/{id}', [AuthController::class, 'showOne']);
-Route::put('/users/{id}/update', [AuthController::class, 'update']);
+Route::put('/users/update/{id}', [AuthController::class, 'update']);

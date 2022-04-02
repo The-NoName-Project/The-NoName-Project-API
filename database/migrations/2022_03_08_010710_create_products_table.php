@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
             // !LLave foranea
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

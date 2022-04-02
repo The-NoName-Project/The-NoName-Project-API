@@ -23,6 +23,7 @@ class CreateDetailSalesTable extends Migration
             $table->foreign('sales_id')->references('id')->on('sales');
             $table->unsignedBigInteger('products_id');
             $table->foreign('products_id')->references('id')->on('products');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

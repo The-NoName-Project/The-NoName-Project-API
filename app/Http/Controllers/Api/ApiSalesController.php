@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Models\Sales;
-use App\Models\Products;
+use App\Models\User;
 
-class ApiSalesController extends Controller
+class ApiSalesController extends ApiController
 {
       /**
      * Display a listing of the resource.
@@ -17,7 +17,8 @@ class ApiSalesController extends Controller
     public function index()
     {
         $sales = Sales::all();
-        return response()->json($sales);
+        //return response()->json($sales);
+        return $this->showAll($sales);
     }
 
 
@@ -30,12 +31,10 @@ class ApiSalesController extends Controller
     public function store(Request $request)
     {
         $sales = new Sales;
-        $sales->total_articles = $request->input('total_articles');
-        $sales->total_price = $request->input('total_price');
-        $sales->subtotal = $request->input('subtotal');
         $sales->cliente_id = $request->input('cliente_id');
         $sales->vendedor_id = $request->input('vendedor_id');
         $sales->save();
+        return $this->showMessage('Venta creada');
     }
 
     /**
@@ -46,9 +45,9 @@ class ApiSalesController extends Controller
      */
     public function show($id)
     {
-        //Mostrar una sola venta
         $sale = Sales::find($id);
-        return response()->json($sale);
+        //return response()->json($sale);
+        return $this->showOne($sale);
     }
 
     /**
@@ -62,7 +61,8 @@ class ApiSalesController extends Controller
     {
         $id=Sales::find($id);
         $id->update($request->all());
-        return $id;
+        //return $id;
+        return $this->showMessage('Venta actualizada');
     }
 
     /**
@@ -75,5 +75,6 @@ class ApiSalesController extends Controller
     {
         $id=Sales::find($id);
         $id->delete();
+        return $this->showDelete('Venta eliminada');
     }
 }

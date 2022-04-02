@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->enum('type', ['Cliente','Admin']);
             $table->enum('status', ['Activo', 'Inactivo']);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
