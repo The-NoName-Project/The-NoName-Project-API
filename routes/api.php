@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//Auth::routes();
         // * Rutas de la api para categorias
 Route::get('/categories', [ApiCategoryController::class, 'index']);
 Route::post('/categories/store', [ApiCategoryController::class, 'store']);
@@ -51,6 +53,7 @@ Route::get('/detailsales/{deta}',[ApiDetailSalesController::class, 'show']);
 Route::get('/detailsales/edit/{id}',[ApiDetailSalesController::class, 'edit']);
 Route::put('/detailsales/update/{id}',[ApiDetailSalesController::class, 'update']);
 Route::delete('/detailsales/delete/{id}',[ApiDetailSalesController::class, 'destroy']);        
+//Auth::routes();
 
 //Rutas de la api para el login de usuarios y restablecer contraseña
 Route::post('/login', [AuthController::class, 'login']);

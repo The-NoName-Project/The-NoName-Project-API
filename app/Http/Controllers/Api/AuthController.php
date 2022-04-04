@@ -111,11 +111,12 @@ class AuthController extends Controller
 
 
     //Guardar el token y mandarlo en la api
-    public function logout(Request $request)
+    public function logout(User $user)
     {
-        $request->user()->token()->revoke();
-        return response()->json([
-            'message' => 'Successfully logged out'
-        ]);
+        $user->tokens()->delete();
+
+        return [
+            'message' => 'You have successfully logged out and the token was successfully deleted'
+        ];
     }
 }
