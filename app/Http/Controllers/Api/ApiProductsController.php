@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
-use App\Models\Category;
 use App\Models\Products;
+use Symfony\Component\HttpFoundation\JsonResponse;
 class ApiProductsController extends ApiController{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): JsonResponse
     {
         $products = Products::all();
         //return response()->json($products, 200);
@@ -26,7 +26,7 @@ class ApiProductsController extends ApiController{
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         $products = new Products;
         $products->name = $request->input('name');
@@ -35,7 +35,7 @@ class ApiProductsController extends ApiController{
         $products->stock= $request->input('stock');
         $products->category_id = $request->input('category_id');
         $products->save();
-        return $this->showMessage('Producto creado correctamente', 200);
+        return $this->showMessage('Producto creado correctamente', 201);
     }
 
     /**
@@ -44,7 +44,7 @@ class ApiProductsController extends ApiController{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id): JsonResponse
     {
         $products = Products::find($id);
         return $this->showOne($products, 200);
@@ -58,7 +58,7 @@ class ApiProductsController extends ApiController{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): JsonResponse
     {
         $id = Products::find($id);
         $id->update($request->all());
@@ -71,7 +71,7 @@ class ApiProductsController extends ApiController{
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $id = Products::find($id);
         $id->delete();

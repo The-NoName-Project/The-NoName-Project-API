@@ -106,7 +106,7 @@ class AuthController extends Controller
     public function update(Request $request, $id){
         $user = User::find($id);
         $user->update($request->all());
-        return $user;
+        return response()->json($user, 200);
     }
 
 

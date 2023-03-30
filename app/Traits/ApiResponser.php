@@ -5,6 +5,7 @@
 namespace App\Traits;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Symfony\Component\HttpFoundation\JsonResponse;
 /** Declaramos un metodo privado que sera el encargado de
  *  retornar respuestas satisfactorias en Formato Json */
 trait ApiResponser
@@ -38,8 +39,8 @@ trait ApiResponser
   }
 
   /* Mensaje de actualizar desde la api */
-  protected function showUpdate($message, $code = 200){
-    return $this->successResponse(['data'=> $message], $code);
+  protected function showUpdate($message, $code = 200, $data): JsonResponse{
+    return $this->successResponse(['message'=> $message, 'data' => $data], $code);
   }
 
   /* Mensaje de eliminar desde la api */
